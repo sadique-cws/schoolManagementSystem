@@ -1,0 +1,26 @@
+{% extends 'admin/adminBase.html' %}
+
+{% block 'admin-content' %}
+    <div class="flex h-[90vh] justify-center items-start">
+
+        <table class="w-10/12 mx-auto mt-3">
+            <tr>
+                <th  class="border">id</th>
+                <th  class="border">class name</th>
+                <th  class="border">action</th>
+            </tr>
+            {% for className in classes %}
+                <tr>
+                    <td class="border">{{ className.id }}</td>
+                    <td class="border">{{ className.className }}</td>
+                    <td class="border p-2">
+                        <a href="{% url 'deleteStudent' className.id %}" class="bg-red-500 text-white px-2 py-1 rounded-lg">Delete</a>
+                        <a href="{% url 'editStudent' className.id %}" class="bg-blue-500 text-white px-2 py-1 rounded-lg">Edit</a>
+                        <a href="{% url 'viewStudent' className.id %}" class="bg-green-500 text-white px-2 py-1 rounded-lg">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}

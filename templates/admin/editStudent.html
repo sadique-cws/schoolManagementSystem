@@ -1,0 +1,18 @@
+{% extends 'admin/adminBase.html' %}
+
+{% block 'admin-content' %}
+
+    <div class="flex">
+            <div class="1/2 mx-auto">
+                <div class="">
+                    <h1>Edit Student`s Records</h1>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Upload Record" class="bg-green-600 hover:bg-gren-700 text-white px-3 py-2 w-full">
+                </form>
+            </div>
+    </div>
+
+{% endblock  %}

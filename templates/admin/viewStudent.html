@@ -1,0 +1,66 @@
+{% extends 'admin/adminBase.html' %}
+
+{% block 'admin-content' %}
+
+    <div class="flex flex-col p-5">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-2xl">View Student Record</h2>
+            <div class="flex gap-2">
+                {% if student.isApproved == False  %}
+                    <a href="{% url 'approve' student.id %}" class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-700">Approve</a>
+                {% endif %}
+                
+                
+                <a href="{% url 'deleteStudent' student.id %}" class="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-700">Delete</a>
+                <a href="{% url 'editStudent' student.id %}" class="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-700">Edit</a>
+            </div>
+        </div>
+        <table class="w-full border mt-3">
+            <tr class="bg-red-50">
+                <th colspan="4" class="border p-2"><h2>Personal Details</h2></th>
+            <tr>
+                <th class="border p-2">Full Name</th>
+                <td class="border p-2" colspan="2">{{student.full_name}}</td>
+                <td colspan="2" rowspan="5" align="center">
+                    {% if student.image  %}
+                         <img src="{{ student.image.url }}" class="w-48 h-48">
+                    {% endif %}
+            </tr>
+            <tr>
+                <th class="border p-2">Father Name</th>
+                <td class="border p-2"  colspan="2">{{student.father_name}}</td>
+            </tr>
+            <tr>
+                <th class="border p-2">Mother Name</th>
+                <td class="border p-2"  colspan="2">{{student.mother_name}}</td>
+            </tr>
+            <tr>
+                <th class="border p-2">Contact</th>
+                <td class="border p-2"  colspan="2">{{student.contact}}</td>
+            </tr>
+            <tr>
+                <th class="border p-2">Gender</th>
+                <td class="border p-2 "  colspan="2">{{student.get_gender_display|capfirst}}</td>
+            </tr>
+            <tr>
+                <th class="border p-2">Address</th>
+                <td class="border p-2 ">{{student.address}}</td>
+                
+                <th class="border p-2">City/State</th>
+                <td class="border p-2 ">{{student.city}}, {{student.state}} - {{student.pin_code}}</td>
+                
+            </tr>
+            
+            <tr>
+                <th class="border p-2">class Name</th>
+                <td class="border p-2 ">{{student.className.className}}</td>
+                
+                <th class="border p-2">IsApproved</th>
+                <td class="border p-2 ">{{student.isApproved}}</td>
+                
+            </tr>
+            
+        </table>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'admin/adminBase.html' %}
+
+{% block 'admin-content' %}
+    <div class="flex h-[90vh] justify-center items-start">
+
+        <table class="w-10/12 mx-auto mt-3">
+            <tr>
+                <th  class="border">id</th>
+                <th  class="border">name</th>
+                <th  class="border">father</th>
+                <th  class="border">mother</th>
+                <th  class="border">Gender</th>
+                <th  class="border">Address</th>
+                <th  class="border">Contact</th>
+                <th  class="border">action</th>
+            </tr>
+            {% for student in students %}
+                <tr>
+                    <td class="border">{{ student.id }}</td>
+                    <td class="border">{{ student.full_name }}</td>
+                    <td class="border">{{ student.father_name }}</td>
+                    <td class="border">{{ student.mother_name }}</td>
+                    <td class="border">{{ student.gender }}</td>
+                    <td class="border">{{ student.address }}</td>
+                    <td class="border">{{ student.contact }}</td>
+                    <td class="border p-2">
+                        <a href="{% url 'deleteStudent' student.id %}" class="bg-red-500 text-white px-2 py-1 rounded-lg">Delete</a>
+                        <a href="{% url 'editStudent' student.id %}" class="bg-blue-500 text-white px-2 py-1 rounded-lg">Edit</a>
+                        <a href="{% url 'viewStudent' student.id %}" class="bg-green-500 text-white px-2 py-1 rounded-lg">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}
