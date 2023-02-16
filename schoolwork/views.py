@@ -73,18 +73,35 @@ def editStudent(r, id):
 
     return render(r, "admin/editStudent.html", {"form":form})
 
+@login_required()
 def viewStudent(r, id):
     student = Student.objects.get(pk=id) 
     return render(r, "admin/viewStudent.html",{"student":student})
 
+@login_required()
 def approve(r, id):
     student = Student.objects.get(id=id, isApproved=False)
     student.isApproved = True 
     student.save()
     return redirect(manageStudents)
 
+
+@login_required()
 def manageClasses(r):
     data = {}
     data['title'] = "Manage Classes"
     data['classes'] = Classes.objects.all()
     return render(r, "admin/manageClasses.html",data)
+
+@login_required()
+def deleteClasses(r,id):
+    classRecord = Classes.objects.get(pk=id)
+    classRecord.delete()
+    return redirect(manageClasses)
+
+@login_required()
+def viewClassWise(r, className):
+    data = {}
+    data["title"] = "Manage " + className + " class students"
+    data['students'] = Student.objects.filter(className__className = className, isApproved=True)
+    return render(r, "admin/manageStudents.html", data)

@@ -1,8 +1,10 @@
 {% extends 'admin/adminBase.html' %}
 
 {% block 'admin-content' %}
-    <div class="flex h-[90vh] justify-center items-start">
-        
+    <div class="flex flex-col gap-2 h-[90vh]  mt-4 items-start">
+        <div class="flex justify-between px-4">
+            <h1 class="font-semibold text-2xl ">{{ title|upper }}</h1>
+        </div>
         <table class="w-10/12 mx-auto mt-3">
             <tr>
                 <th  class="border">id</th>
@@ -14,9 +16,9 @@
                     <td class="border">{{ className.id }}</td>
                     <td class="border">{{ className.className }}</td>
                     <td class="border p-2">
-                        <a href="{% url 'deleteStudent' className.id %}" class="bg-red-500 text-white px-2 py-1 rounded-lg">Delete</a>
+                        <a href="{% url 'deleteClasses' className.id %}" class="bg-red-500 text-white px-2 py-1 rounded-lg">Delete</a>
                         <a href="{% url 'editStudent' className.id %}" class="bg-blue-500 text-white px-2 py-1 rounded-lg">Edit</a>
-                        <a href="{% url 'viewStudent' className.id %}" class="bg-green-500 text-white px-2 py-1 rounded-lg">View</a>
+                        <a href="{% url 'viewClassWise' className %}" class="bg-green-500 text-white px-2 py-1 rounded-lg">View Students</a>
                     </td>
                 </tr>
             {% endfor %}
