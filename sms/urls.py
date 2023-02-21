@@ -18,6 +18,7 @@ urlpatterns = [
     path("manage/classes",manageClasses, name="manageClasses"),
     path("manage/classes/<int:id>/delete/", deleteClasses, name="deleteClasses"),
     path("manage/clssses/view-class/<className>/", viewClassWise, name="viewClassWise"),
+    path("manage/student/scan/",scanRfCode,name="scan"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

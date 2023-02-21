@@ -2,8 +2,13 @@
 
 {% block 'admin-content' %}
     <div class="flex h-[90vh] mt-5 flex-col items-start">
-        <div class="flex justify-between px-4">
-            <h1 class="font-semibold text-2xl ">{{ title|upper }}</h1>
+        <div class="flex justify-between px-10 w-full">
+            <h1 class="font-semibold text-2xl flex-1">{{ title|upper }}</h1>
+
+            <form action="{% url 'scan' %}" method="get" class="flex gap-2">
+                <input type="text" name="code" class="border" placeholder="Scan RF code here" size="40" autofocus/>
+                <input type="submit" class="bg-teal-600 text-white px-3 py-2 rounded w-16" value="Scan">
+            </form>
         </div>
         <table class="w-10/12 mx-auto mt-3">
             <tr>

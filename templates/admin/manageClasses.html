@@ -2,27 +2,37 @@
 
 {% block 'admin-content' %}
     <div class="flex flex-col gap-2 h-[90vh]  mt-4 items-start">
-        <div class="flex justify-between px-4">
-            <h1 class="font-semibold text-2xl ">{{ title|upper }}</h1>
+        <div class="flex justify-between px-16 w-full">
+            <h1 class="font-semibold text-2xl flex-1 ">{{ title|upper }}</h1>
         </div>
-        <table class="w-10/12 mx-auto mt-3">
-            <tr>
-                <th  class="border">id</th>
-                <th  class="border">class name</th>
-                <th  class="border">action</th>
-            </tr>
-            {% for className in classes %}
+        <div class="flex w-10/12 mx-auto mt-4 gap-3">
+            <table class="w-8/12">
                 <tr>
-                    <td class="border">{{ className.id }}</td>
-                    <td class="border">{{ className.className }}</td>
-                    <td class="border p-2">
-                        <a href="{% url 'deleteClasses' className.id %}" class="bg-red-500 text-white px-2 py-1 rounded-lg">Delete</a>
-                        <a href="{% url 'editStudent' className.id %}" class="bg-blue-500 text-white px-2 py-1 rounded-lg">Edit</a>
-                        <a href="{% url 'viewClassWise' className %}" class="bg-green-500 text-white px-2 py-1 rounded-lg">View Students</a>
-                    </td>
+                    <th  class="border">id</th>
+                    <th  class="border">class name</th>
+                    <th  class="border">action</th>
                 </tr>
-            {% endfor %}
-        </table>
+                {% for className in classes %}
+                    <tr>
+                        <td class="border">{{ className.id }}</td>
+                        <td class="border">{{ className.className }}</td>
+                        <td class="border p-2">
+                            <a href="{% url 'deleteClasses' className.id %}" class="bg-red-500 text-white px-2 py-1 rounded-lg">Delete</a>
+                            <a href="{% url 'editStudent' className.id %}" class="bg-blue-500 text-white px-2 py-1 rounded-lg">Edit</a>
+                            <a href="{% url 'viewClassWise' className %}" class="bg-green-500 text-white px-2 py-1 rounded-lg">View Students</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="w-4/12">
+                <h1 class="font-semibold text-2xl flex-1 ">Insert Class Here</h1>
+                <form action="" method="post">
+                    {{ form }}
+                    {% csrf_token %}
+                    <input type="submit" class="mt-5 bg-teal-600 hover:bg-teal-700 text-white rounded" value="Create Class">
+                </form>
+            </div>
+        </div>
 
     </div>
 {% endblock %}
